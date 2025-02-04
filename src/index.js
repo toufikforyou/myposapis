@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import apiRouter from "./apis/index.js";
 import { errorHandler } from "./middlewares/api.error.middleware.js";
+import ApiResponse from "./models/api.response.model.js";
 import setHeader from "./utils/header.utils.js";
 const app = express();
 
@@ -13,7 +14,11 @@ app.use("/robots.txt", (req, res) => {
 });
 
 app.use("/404", async (req, res) => {
-  res.status(404).json({ message: "Not Found" });
+  res.status(404).json(
+    new ApiResponse.Error(404, "Not Found", {
+      message: "The requested resource was not found",
+    })
+  );
 });
 
 app.use(setHeader);
