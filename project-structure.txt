@@ -1,0 +1,40 @@
+SOPNO LIKHI USERS API {project-root}/
+├── configs/
+├── public/404
+├── src/
+│   ├── apis/
+│   │   ├── controllers/
+│   │   │   └── todo.txt
+│   │   ├── helpers/
+│   │   │   └── todo.txt
+│   │   ├── interfaces/
+│   │   │   └── todo.txt
+│   │   ├── middlewares/
+│   │   │   └── todo.txt
+│   │   ├── models/
+│   │   │   └── todo.txt
+│   │   ├── routes/
+│   │   │   └── todo.txt
+│   │   ├── services/
+│   │   │   └── todo.txt
+│   │   ├── validators/
+│   │   │   └── todo.txt
+│   │   └── index.js
+│   │   
+│   ├── config/
+│   │   └── todo.txt
+│   ├── database/
+│   │   └── todo.txt
+│   ├── middlewares/
+│   │   └── todo.txt
+│   ├── models/
+│   │   └── todo.txt
+│   ├── services/
+│   │   └── todo.txt
+│   ├── utils/
+│   │   └── todo.txt
+│   └── index.js
+├── test/todo.txt
+├── package.json
+├── robots.txt
+└── server.js
