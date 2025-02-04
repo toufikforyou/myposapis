@@ -3,23 +3,30 @@ SOPNO LIKHI USERS API {project-root}/
 ├── public/404
 ├── src/
 │   ├── apis/
-│   │   ├── controllers/
-│   │   │   └── todo.txt
-│   │   ├── helpers/
-│   │   │   └── todo.txt
-│   │   ├── interfaces/
-│   │   │   └── todo.txt
-│   │   ├── middlewares/
-│   │   │   └── todo.txt
-│   │   ├── models/
-│   │   │   └── todo.txt
-│   │   ├── routes/
-│   │   │   └── todo.txt
-│   │   ├── services/
-│   │   │   └── todo.txt
-│   │   ├── validators/
-│   │   │   └── todo.txt
-│   │   └── index.js
+│   │   ├── v1/
+│   │   │   ├── controllers/
+│   │   │   │   └── todo.txt
+│   │   │   ├── helpers/
+│   │   │   │   └── todo.txt
+│   │   │   ├── interfaces/
+│   │   │   │   └── todo.txt
+│   │   │   ├── middlewares/
+│   │   │   │   └── todo.txt
+│   │   │   ├── models/
+│   │   │   │   └── todo.txt
+│   │   │   ├── routes/
+│   │   │   │   └── todo.txt
+│   │   │   ├── services/
+│   │   │   │   └── todo.txt
+│   │   │   ├── validators/
+│   │   │   │   └── todo.txt
+│   │   │   └── index.js
+│   │   │
+│   │   ├── v2/
+│   │   │   (LIKE TO V1)
+│   │   │
+│   │   └── v3/
+│   │       (LIKE TO V12)
 │   │   
 │   ├── config/
 │   │   └── todo.txt
