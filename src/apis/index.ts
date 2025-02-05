@@ -1,6 +1,6 @@
 import { Response, Router } from "express";
 import apiAuthMiddleware from "../middlewares/api.auth.middleware";
-import v1Routes from "./v1/index";
+import v1Routes from "./v1";
 
 const apiRouter: Router = Router();
 
