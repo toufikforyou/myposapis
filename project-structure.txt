@@ -5,22 +5,22 @@ My ePos Project {project-root}/
 │   ├── apis/
 │   │   ├── v1/
 │   │   │   ├── controllers/
-│   │   │   │   └── todo.txt
+│   │   │   │   └── todo.md
 │   │   │   ├── helpers/
-│   │   │   │   └── todo.txt
+│   │   │   │   └── todo.md
 │   │   │   ├── interfaces/
-│   │   │   │   └── todo.txt
+│   │   │   │   └── todo.md
 │   │   │   ├── middlewares/
-│   │   │   │   └── todo.txt
+│   │   │   │   └── todo.md
 │   │   │   ├── models/
-│   │   │   │   └── todo.txt
+│   │   │   │   └── todo.md
 │   │   │   ├── routes/
-│   │   │   │   └── todo.txt
+│   │   │   │   └── todo.md
 │   │   │   ├── services/
-│   │   │   │   └── todo.txt
+│   │   │   │   └── todo.md
 │   │   │   ├── validators/
-│   │   │   │   └── todo.txt
-│   │   │   └── index.js
+│   │   │   │   └── todo.md
+│   │   │   └── index.ts
 │   │   │
 │   │   ├── v2/
 │   │   │   (LIKE TO V1)
@@ -29,19 +29,19 @@ My ePos Project {project-root}/
 │   │       (LIKE TO V12)
 │   │   
 │   ├── config/
-│   │   └── todo.txt
+│   │   └── todo.md
 │   ├── database/
-│   │   └── todo.txt
+│   │   └── todo.md
 │   ├── middlewares/
-│   │   └── todo.txt
+│   │   └── todo.md
 │   ├── models/
-│   │   └── todo.txt
+│   │   └── todo.md
 │   ├── services/
-│   │   └── todo.txt
+│   │   └── todo.md
 │   ├── utils/
-│   │   └── todo.txt
-│   └── index.js
-├── test/todo.txt
+│   │   └── todo.md
+│   └── index.ts
+├── test/todo.md
 ├── package.json
 ├── robots.txt
-└── server.js
+└── server.ts
