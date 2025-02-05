@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import path from 'path';
-import apiRouter from './apis/index';
+import apiRouter from './apis';
 import { errorHandler } from './middlewares/api.error.middleware';
 import ApiResponse from './models/api.response.model';
 import setHeader from './utils/header.utils';
