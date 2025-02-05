@@ -1,4 +1,4 @@
-SOPNO LIKHI USERS API {project-root}/
+My ePos Project {project-root}/
 ├── configs/
 ├── public/404
 ├── src/
