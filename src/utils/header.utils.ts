@@ -1,10 +1,11 @@
-const allowedOrigins = ["http://localhost:3000"];
+import { NextFunction, Request, Response } from 'express';
 
-export default (req, res, next) => {
+const allowedOrigins: string[] = ["http://localhost:3000"];
+
+export default (req: Request, res: Response, next: NextFunction): void => {
   const origin = req.headers.origin;
 
   res.setHeader("Access-Control-Allow-Origin", allowedOrigins);
-
   res.setHeader("x-powered-by", "My Epos Server");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
@@ -22,8 +23,9 @@ export default (req, res, next) => {
   res.setHeader("X-Robots-Tag", "noindex, nofollow");
 
   if (req.method === "OPTIONS") {
-    return res.status(204).end();
+    res.status(204).end();
+    return;
   }
 
   next();
-};
+}; 
