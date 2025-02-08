@@ -11,10 +11,10 @@ app.use("/robots.txt", (req: Request, res: Response) => {
   res.sendFile(path.resolve(process.cwd(), "robots.txt"));
 });
 
-app.use("/404", async (_: Request, res: Response) => {
-  res.status(404).json(
-    new ApiResponse.Error(404, "Not Found", {
-      message: "The requested resource was not found",
+app.get("/", (req: Request, res: Response) => {
+  return res.json(
+    new ApiResponse.Success(200, "Welcome to the API", {
+      message: "This is the home page of the API",
     })
   );
 });
@@ -26,7 +26,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", apiRouter);
 
 app.use((_: Request, res: Response) => {
-  res.redirect("/404");
+  return res.status(404).json(
+    new ApiResponse.Error(404, "Not Found", {
+      message: "The requested resource was not found",
+    })
+  );
 });
 
 // Api Error Middleware
