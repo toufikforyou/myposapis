@@ -11,7 +11,7 @@ export default class ApiResponse {
     this.message = message;
   }
 
-  static Success = class<T = any> extends ApiResponse implements ApiSuccessResponse<T> {
+  static Success = class <T = any> extends ApiResponse implements ApiSuccessResponse<T> {
     data: T;
 
     constructor(statusCode: number, message: string = "Success", data: T) {
