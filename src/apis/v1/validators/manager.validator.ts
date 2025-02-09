@@ -20,4 +20,13 @@ export const managerRegistrationValidator = [
 
     body("sid")
         .notEmpty().withMessage("Shop ID is required")
+];
+
+export const managerLoginValidator = [
+    body("username")
+        .notEmpty().withMessage("Username or email is required")
+        .trim(),
+
+    body("password")
+        .notEmpty().withMessage("Password is required")
 ]; 

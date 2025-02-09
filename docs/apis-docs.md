@@ -2,6 +2,12 @@
 
 Welcome to the API documentation. This documentation provides detailed information about the available endpoints, request/response formats, and authentication methods.
 
+## Documentation Sections
+
+- [General API Information](./apis-docs.md)
+- [Shop and Manager Management](./shop-and-manager-docs.md)
+- [Authentication](./auth-docs.md)
+
 ## General Information
 
 ### Base URL

@@ -4,4 +4,9 @@ export interface IManagerRegistration {
     email: string;
     password: string;
     sid: string;
+}
+
+export interface IManagerLogin {
+    username: string;
+    password: string;
 } 
