@@ -71,7 +71,8 @@ export class ManagerService {
             {
                 uid: manager.uid,
                 email: manager.email,
-                username: manager.username
+                username: manager.username,
+                sid: shopManagers.map(sm => sm.shop.sid)
             },
             process.env.JWT_SECRET || 'your-secret-key',
             { expiresIn: '15d' }
