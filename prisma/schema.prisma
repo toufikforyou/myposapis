@@ -12,3 +12,51 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum Role {
+  SUPERADMIN
+  ADMIN
+}
+
+model Manager {
+  uid          String        @id @default(uuid())
+  name         String        @default("")
+  username     String        @unique
+  email        String        @unique
+  password     String
+  managedShops ShopManager[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+}
+
+model Shop {
+  sid           String        @id @default(uuid())
+  name          String        @default("Demo Shop")
+  email         String        @unique
+  phone         String        @unique
+  address       String        @default("")
+  country       String        @default("")
+  website       String        @default("")
+  logo          String        @default("")
+  bin           String        @default("")
+  description   String        @default("")
+  industry      String        @default("")
+  type          String        @default("")
+  employeeRange String        @default("")
+  managers      ShopManager[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+}
+
+model ShopManager {
+  id        String   @id @default(uuid())
+  managerId String
+  shopId    String
+  role      Role
+  manager   Manager  @relation(fields: [managerId], references: [uid])
+  shop      Shop     @relation(fields: [shopId], references: [sid])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([managerId, shopId])
+}
