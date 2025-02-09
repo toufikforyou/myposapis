@@ -6,9 +6,7 @@ import { ShopService } from "../services/shop.service";
 class ShopController {
     async register(req: Request, res: Response) {
         try {
-            // Validate request
             const errors = validationResult(req);
-
             const formattedErrors = errors.array().map(error => ({
                 field: error.type === "field" ? error.path : "unknown",
                 message: error.msg
@@ -20,10 +18,7 @@ class ShopController {
                     .json(new ApiResponse.Error(400, "Validation error", formattedErrors));
             }
 
-
-            // Register shop
-            const result = await ShopService.registerShop(req.body);
-
+            const result = await ShopService.registerShop(req.body, req.file?.filename);
             return res.status(201).json(
                 new ApiResponse.Success(201, "Shop registered successfully", result)
             );

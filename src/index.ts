@@ -19,6 +19,8 @@ app.get("/", (req: Request, res: Response) => {
   );
 });
 
+app.use(express.static(path.resolve(process.cwd(), "public")));
+
 app.use(setHeader);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
