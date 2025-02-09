@@ -11,10 +11,4 @@ export interface IShopRegistration {
     industry?: string;
     type?: string;
     employeeRange?: string;
-    manager: {
-        name: string;
-        username: string;
-        email: string;
-        password: string;
-    };
-} 
+}

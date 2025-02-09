@@ -6,7 +6,7 @@ import { shopRegistrationValidator } from "../validators/shop.validator";
 const router = express.Router();
 
 router.post(
-    "/register",
+    "/",
     shopRegistrationValidator,
     checkShopEmail,
     shopController.register
