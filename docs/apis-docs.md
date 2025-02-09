@@ -1,27 +1,16 @@
-# I'll help create a structured documentation system
-
-```markdown:docs/apis-docs.md
 # API Documentation
 
 Welcome to the API documentation. This documentation provides detailed information about the available endpoints, request/response formats, and authentication methods.
-
-## Available API Versions
-
-- [V1 Documentation](./v1/index.md)
-  - [Shop and Manager System](./v1/shop-and-manager.md)
 
 ## General Information
 
 ### Base URL
 
-<http://your-domain.com/api>
+```base
+http://your-domain.com/api/v1
+```
 
-### Authentication
-Most endpoints require authentication. Use the following header:
-
-Authorization: Bearer <token>
-
-## Response Format
+### Response Format
 
 All API responses follow this standard format:
 
@@ -52,7 +41,7 @@ All API responses follow this standard format:
 }
 ```
 
-## Common Status Codes
+### Common Status Codes
 
 - 200: Success
 - 201: Created
@@ -62,33 +51,37 @@ All API responses follow this standard format:
 - 404: Not Found
 - 500: Internal Server Error
 
-Now, let's create the shop and manager specific documentation:
+## API Endpoints
 
-```markdown:docs/v1/shop-and-manager.md
-# Shop and Manager Management API
+### 1. Shop Registration
 
-## Shop Management
+**Endpoint:** `POST /shop`
 
-### Register Shop
-Create a new shop in the system.
+**Request Body (multipart/form-data):**
 
-**Endpoint:** `POST /v1/shop`
+Required Fields:
 
-**Request Body:**
 ```json
 {
-    "name": "Shop Name",           // required, string (3-100 chars)
-    "email": "shop@email.com",     // required, valid email
-    "phone": "+1234567890",        // required, valid phone number
-    "address": "Shop Address",     // optional, string (5-200 chars)
-    "country": "Country Name",     // optional, string (2-100 chars)
-    "website": "www.shop.com",     // optional, valid URL
-    "logo": "logo-url.jpg",        // optional, valid image URL
-    "bin": "123456",              // optional, string (5-50 chars)
-    "description": "Description",  // optional, string (max 500 chars)
-    "industry": "Retail",         // optional, string (2-100 chars)
-    "type": "Online",             // optional, string (2-50 chars)
-    "employeeRange": "10-50"      // optional, string (max 50 chars)
+    "name": "Shop Name",           // string (3-100 chars)
+    "email": "shop@email.com",     // valid email
+    "phone": "+1234567890"         // valid phone number
+}
+```
+
+Optional Fields:
+
+```json
+{
+    "logo": "file",               // JPG/JPEG/PNG, max 2MB
+    "address": "Shop Address",    // string (5-200 chars)
+    "country": "Country Name",    // string (2-100 chars)
+    "website": "www.shop.com",    // valid URL
+    "bin": "123456",             // string (5-50 chars)
+    "description": "Description", // string (max 500 chars)
+    "industry": "Retail",        // string (2-100 chars)
+    "type": "Online",            // string (2-50 chars)
+    "employeeRange": "10-50"     // string (max 50 chars)
 }
 ```
 
@@ -102,7 +95,9 @@ Create a new shop in the system.
         "shop": {
             "sid": "uuid-string",
             "name": "Shop Name",
-            // ... other shop fields
+            "email": "shop@email.com",
+            "phone": "+1234567890",
+            "logo": "shop-1234567890.jpg",  // If logo was uploaded
             "createdAt": "2024-03-XX",
             "updatedAt": "2024-03-XX"
         }
@@ -110,25 +105,72 @@ Create a new shop in the system.
 }
 ```
 
-**Error Responses:**
+#### Logo Upload Specifications
 
-- Validation Error (400)
-- Duplicate Entry (400)
+- Supported formats: JPG, JPEG, PNG
+- Maximum file size: 2MB
+- File will be saved as: `shop-{timestamp}.{extension}`
+- Upload directory: `public/shop/logo/`
+- Field name in form: `logo`
 
-## Manager Management
+#### Error Responses
 
-### Register Manager
+1. Validation Error (400):
 
-Register a manager with SUPERADMIN role for an existing shop.
+```json
+{
+    "status": 400,
+    "message": "Validation error",
+    "errors": [
+        {
+            "field": "email",
+            "message": "Valid email is required"
+        }
+    ]
+}
+```
 
-**Endpoint:** `POST /v1/manager`
+## 2. Logo Upload Error (400)
+
+```json
+
+{
+    "status": 400,
+    "message": "Logo upload error",
+    "errors": [
+        {
+            "field": "logo",
+            "message": "Only JPG, JPEG, or PNG format allowed"
+        }
+    ]
+}
+```
+
+## 3. File Size Error (400)
+
+```json
+{
+    "status": 400,
+    "message": "Logo upload error",
+    "errors": [
+        {
+            "field": "logo",
+            "message": "File too large"
+        }
+    ]
+}
+```
+
+### 2. Manager Registration
+
+**Endpoint:** `POST /manager`
 
 **Request Body:**
 
 ```json
 {
     "name": "Manager Name",        // required, string (2-100 chars)
-    "username": "manager_user",    // required, string (4-30 chars)
+    "username": "manager_user",    // required, string (4-30 chars, alphanumeric with _ and .)
     "email": "manager@email.com",  // required, valid email
     "password": "Password123!",    // required, min 6 chars
     "sid": "shop-uuid"            // required, valid shop ID
@@ -154,11 +196,52 @@ Register a manager with SUPERADMIN role for an existing shop.
 }
 ```
 
-**Error Responses:**
+Error Responses
 
-- Validation Error (400)
-- Duplicate Entry (400)
-- Shop Not Found (404)
+1. Validation Error (400):
+
+```json
+{
+    "status": 400,
+    "message": "Validation error",
+    "errors": [
+        {
+            "field": "username",
+            "message": "Username can only contain letters, numbers, dots and underscores"
+        }
+    ]
+}
+```
+
+## 2. Duplicate Entry (400)
+
+```json
+{
+    "status": 400,
+    "message": "Manager email already exists",
+    "errors": [
+        {
+            "field": "email",
+            "message": "Manager email already exists"
+        }
+    ]
+}
+```
+
+## 3. Shop Not Found (404)
+
+```json
+{
+    "status": 404,
+    "message": "Shop not found",
+    "errors": [
+        {
+            "field": "sid",
+            "message": "Shop not found"
+        }
+    ]
+}
+```
 
 ## Field Validations
 
@@ -169,10 +252,10 @@ Register a manager with SUPERADMIN role for an existing shop.
 | name          | Yes      | 3-100 characters             |
 | email         | Yes      | Valid email, unique          |
 | phone         | Yes      | Valid phone number, unique    |
+| logo          | No       | JPG/JPEG/PNG, max 2MB        |
 | address       | No       | 5-200 characters             |
 | country       | No       | 2-100 characters             |
 | website       | No       | Valid URL                    |
-| logo          | No       | Valid image URL              |
 | bin           | No       | 5-50 characters              |
 | description   | No       | Max 500 characters           |
 | industry      | No       | 2-100 characters             |
@@ -189,60 +272,12 @@ Register a manager with SUPERADMIN role for an existing shop.
 | password | Yes      | Min 6 characters                          |
 | sid      | Yes      | Valid existing shop ID                    |
 
-## Error Response Examples
+## This documentation
 
-### Validation Error
-
-```json
-{
-    "status": 400,
-    "message": "Validation error",
-    "errors": [
-        {
-            "field": "email",
-            "message": "Valid email is required"
-        }
-    ]
-}
-```
-
-### Duplicate Entry
-
-```json
-{
-    "status": 400,
-    "message": "Email already exists",
-    "errors": [
-        {
-            "field": "email",
-            "message": "Email already exists"
-        }
-    ]
-}
-```
-
-### Shop Not Found
-
-```json
-{
-    "status": 404,
-    "message": "Shop not found",
-    "errors": [
-        {
-            "field": "sid",
-            "message": "Shop not found"
-        }
-    ]
-}
-```
-
-This documentation structure:
-
-1. Main API docs as an index
-2. Detailed shop and manager documentation
-3. Clear request/response examples
-4. Field validation tables
-5. Error response examples
-6. Organized by feature
-
-Would you like me to add or modify any specific part?
+- Has a clear structure
+- Includes all endpoints
+- Shows request/response formats
+- Details validation rules
+- Lists error scenarios
+- Provides field specifications
+- Includes logo upload details
