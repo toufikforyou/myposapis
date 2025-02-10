@@ -1,6 +1,7 @@
 import { Response, Router } from "express";
 import ApiResponse from "../../../models/api.response.model";
-
+import managerRouter from "./manager";
+import shopRouter from "./shop";
 
 const router: Router = Router();
 
@@ -12,5 +13,7 @@ router.get("/", (_, res: Response) => {
     );
 });
 
+router.use("/shop", shopRouter);
+router.use("/manager", managerRouter);
 
 export default router; 
