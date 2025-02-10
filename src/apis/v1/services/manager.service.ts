@@ -104,10 +104,22 @@ export class ManagerService {
 
         return {
             token,
-            email: manager.email,
-            username: manager.username,
-            shops: shopManagers.map(sm => sm.shop.sid),
+            manager: {
+                uid: manager.uid,
+                email: manager.email,
+                username: manager.username,
+                name: manager.name,
+                createdAt: manager.createdAt,
+                updatedAt: manager.updatedAt,
+
+            },
+            shops: shopManagers.map(sm => ({
+                sid: sm.shop.sid,
+                role: sm.role
+            }))
+            ,
             expiresIn: new Date(Date.now() + (15 * 24 * 60 * 60 * 1000)).toISOString()
+
         };
     }
 } 
