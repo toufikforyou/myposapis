@@ -7,6 +7,7 @@ Welcome to the API documentation. This documentation provides detailed informati
 - [General API Information](./apis-docs.md)
 - [Shop and Manager Management](./shop-and-manager-docs.md)
 - [Authentication](./auth-docs.md)
+- [Protected Routes](./protected-routes-docs.md)
 
 ## General Information
 
