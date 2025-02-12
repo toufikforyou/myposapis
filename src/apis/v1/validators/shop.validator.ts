@@ -47,3 +47,30 @@ export const shopRegistrationValidator = [
         .optional()
         .isLength({ max: 50 }).withMessage("Employee range cannot exceed 50 characters"),
 ];
+
+export const additionalShopValidator = [
+    body("name")
+        .notEmpty().withMessage("Shop name is required")
+        .isLength({ min: 3, max: 100 }).withMessage("Shop name must be between 3 and 100 characters")
+        .trim(),
+
+    body("email")
+        .isEmail().withMessage("Valid shop email is required"),
+
+    body("phone")
+        .notEmpty().withMessage("Shop phone is required")
+        .matches(/^\+?[\d\s-]+$/).withMessage("Invalid phone number format"),
+
+    // Optional fields with validation if provided
+    body("address")
+        .optional()
+        .isLength({ min: 5, max: 200 }).withMessage("Address must be between 5 and 200 characters"),
+
+    body("website")
+        .optional()
+        .isURL().withMessage("Invalid website URL"),
+
+    body("bin")
+        .optional()
+        .isLength({ min: 5, max: 50 }).withMessage("BIN must be between 5 and 50 characters")
+];
